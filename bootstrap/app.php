@@ -11,7 +11,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Pengguna yang sudah login dan membuka /login atau /register dialihkan ke Daftar Laporan
+        $middleware->redirectUsersTo(fn () => route('laporan.index'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
